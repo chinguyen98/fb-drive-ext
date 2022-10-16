@@ -8,11 +8,12 @@ module.exports = {
             env === 'development' && require.resolve('react-dev-utils/webpackHotDevClient'),
             paths.appIndexJs,
           ].filter(Boolean),
-          content: './src/chromeServices/content.ts',
+          background: './src/chromeServices/background.ts',
+          contentScript: './src/chromeServices/contentScript.ts',
         },
         output: {
           ...webpackConfig.output,
-          filename: 'static/js/[name].js',
+          filename: '[name].js',
         },
         optimization: {
           ...webpackConfig.optimization,
