@@ -1,3 +1,5 @@
+import { requestAccessTokenApi } from 'api/auth.api';
+
 let enabledRule: chrome.events.Rule = {
   conditions: [
     new chrome.declarativeContent.PageStateMatcher({
@@ -14,4 +16,10 @@ chrome.runtime.onInstalled.addListener((details) => {
   });
 });
 
-export {};
+chrome.runtime.onInstalled.addListener(async () => {
+  const response = await requestAccessTokenApi();
+  console.log({ response });
+});
+
+export { };
+
