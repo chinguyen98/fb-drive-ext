@@ -1,8 +1,10 @@
-import { CLIENT_ID } from './config';
+import { useAuthContext } from 'context/AuthContext';
 import styles from './_app.module.scss';
 
 function App() {
-  return <div className={styles['container']}></div>;
+  const { accessToken } = useAuthContext();
+
+  return <div className={styles['container']}>Access token: {accessToken}</div>;
 }
 
 export default App;
