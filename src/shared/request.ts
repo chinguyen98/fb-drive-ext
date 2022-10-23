@@ -32,7 +32,10 @@ const baseRequest = async ({
     },
   })
     .then((response) => response.json())
-    .then((result) => result);
+    .then((result) => result)
+    .catch((err) => {
+      throw new Error(err);
+    });
   return response;
 };
 

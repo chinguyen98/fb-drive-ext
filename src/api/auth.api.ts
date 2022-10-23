@@ -1,5 +1,6 @@
 import baseRequest from 'shared/request';
 import { CLIENT_ID, CLIENT_SECRET, REQUEST_TOKEN } from 'config';
+import { RequestAccessTokenApiResponse } from 'types/apiResponse/authApiResponse.type';
 
 const prefix = 'oauth2';
 
@@ -14,7 +15,7 @@ export const authorizationApi = () => {
   });
 };
 
-export const requestAccessTokenApi = () => {
+export const requestAccessTokenApi = (): Promise<RequestAccessTokenApiResponse> => {
   return baseRequest({
     subUrl: `${prefix}/token`,
     method: 'POST',
