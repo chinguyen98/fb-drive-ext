@@ -15,18 +15,13 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
   useEffect(() => {
-    console.info('Check Access Token!123');
-
     chrome.storage.sync.get(LOCAL_STORAGE_KEY.ACCESS_TOKEN, (result) => {
-      console.log({result})
       setAccessToken(result[LOCAL_STORAGE_KEY.ACCESS_TOKEN]);
     });
 
     chrome.storage.onChanged.addListener(function (changes, namespace) {
-      for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
-        console.log({key, oldValue, newValue, changes})
+      for (let [key, { newValue }] of Object.entries(changes)) {
         if (key === LOCAL_STORAGE_KEY.ACCESS_TOKEN) {
-          console.log({ oldValue, newValue });
           setAccessToken(newValue);
         }
       }
